@@ -1,6 +1,10 @@
 ## AppListaSupermercado
 App Lista Supermercado- CRUD com SQLite
 
+<h4 align="center"> 
+	Em construção...  🚧
+</h4>
+
 Etapas do projeto:
 - Instalar pacote NuGet (sqlite-net-pcl)
 - Separar o prjeto em camadas:
