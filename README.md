@@ -1,5 +1,5 @@
 ## AppListaSupermercado
-#App Lista Supermercado- CRUD com SQLite
+App Lista Supermercado- CRUD com SQLite
 
 Etapas do projeto:
 - Instalar pacote NuGet (sqlite-net-pcl)
