@@ -23,7 +23,7 @@ namespace AppListaSupermercado.Helper
         public SQLiteDatabaseHelper (string path)
         {
             con = new SQLite.SQLiteAsyncConnection (path);
-
+         
             /** criando uma tabela de forma assíncrona, baseada no model produto
              */
 
@@ -38,29 +38,41 @@ namespace AppListaSupermercado.Helper
          * Pega o que o usuário digitou na interface gráfica e preenche os campos da classe.
          * Uma vez que preenchido, pode ser transportado de lugar (I.G para Helper- gravar no sqlite)
          */
-        public void insert(Produto p)
+        public Task<int> Insert(Produto p)
         {
-
+            return con.InsertAsync(p);
         }
 
-        public void update(Produto p)
-        {
 
+        /** 
+         * string SQL que vai fazer as atualizações nos seguintes campos da tabela (formulário)
+         */
+
+        public void Update(Produto p)
+        {
+            string sql = "UPDATE Produto SEt Descricao=?, Quantidade=?, Preco=? WHERE id =? ";
+
+            con.QueryAsync<Produto>(sql, p.Descricao, p.Quantidade, p.Preco, p.Id);
         }
 
-        public Task<Produto> GetById(int id)
+
+        /**
+         * consulta o banco de dados e retorna uma lista de produtos (array de objetos)
+         */
+
+        public Task<List<Produto>> GetAll()
         {
-            return new Produto();
+            return con.Table<Produto>().ToListAsync();
+            /** retorna todos os regsitros da tabela em forma de lista*/
         }
 
-        public Task<List<Produto>> getAll()
+
+        public Task<int> Delete(int id)
         {
-
-        }
-
-        public void delete(int id)
-        {
-
+            return con.Table<Produto>().DeleteAsync(i => i.Id == id);
+            /* Fazer um delete na tabela produto, para cada item da tabela onde 
+             * o Id do item seja igual o Id recebido como parêmtro
+             */
         }
     }
 }
