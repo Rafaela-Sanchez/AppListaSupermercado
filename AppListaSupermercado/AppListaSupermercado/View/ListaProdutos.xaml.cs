@@ -16,5 +16,22 @@ namespace AppListaSupermercado.View
         {
             InitializeComponent();
         }
+
+        private void ToolbarItem_Novo(object sender, EventArgs e)
+        {
+            try
+            {
+                Navigation.PushAsync(new FormularioCadastro());
+            }
+            catch(Exception ex)
+            {
+                DisplayAlert("Opa!", ex.Message, "OK");
+            }
+        }
+
+        private void ToolbarItem_Somar(object sender, EventArgs e)
+        {
+
+        }
     }
 }
